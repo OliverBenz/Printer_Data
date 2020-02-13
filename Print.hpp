@@ -24,6 +24,7 @@ public:
 	void setTime(Time time, Time timeReal);
 
 	Time getTimeDiff();
+	std::string getUser();
 
 	friend std::ostream& operator <<(std::ostream& os, Print p);
 };

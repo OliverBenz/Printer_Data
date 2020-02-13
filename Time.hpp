@@ -5,7 +5,6 @@ class Time{
 public:
 	int hours, minutes, seconds;
 
-public:
 	Time();
 	Time(int hours, int minutes, int seconds);
 

@@ -47,6 +47,10 @@ Time Print::getTimeDiff() {
 	return Time();
 }
 
+std::string Print::getUser() {
+	return user;
+}
+
 std::ostream& operator <<(std::ostream& os, Print p) {
 	os << "------------------------------" << std::endl;
 	os << p.id << " - " << p.user << ": " << p.printName << " - " << p.status << std::endl;

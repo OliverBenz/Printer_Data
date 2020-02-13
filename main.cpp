@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <sstream>
 #include <vector>
+#include <map>
+#include <sstream>
 #include <algorithm>
 
 #include "Date.hpp"
@@ -11,14 +12,16 @@
 
 using namespace std;
 
+// Formatting functions
 Print getPrint(string line);
 Time getTime(string t);
 Date getDate(string d);
 
-//void abweichung(vector<Print>* prints);
+// Analysis functions
+void mostPrints(vector<Print>* prints);
 
 int main() {
-	ifstream file("all.csv");
+	ifstream file("data.csv");
 
 	vector<Print> prints;
 
@@ -29,10 +32,34 @@ int main() {
 	}
 	else cout << "Could not open file" << endl;
 
-	if(!prints.empty()) cout << prints.back() << endl;
+	// if(!prints.empty()) cout << prints.back() << endl;
+
+	cout << "Person with the most prints: ";
+	mostPrints(&prints);
 
 	file.close();
 	return 0;
+}
+
+void mostPrints(vector<Print>* prints) {
+	map<string, int> top;
+	
+	// Insert users and printCount to map
+	for (auto& i : *prints) {
+		if (top.find(i.getUser()) != top.end())
+			top.find(i.getUser())->second += 1;
+		else {
+			top.insert(make_pair(i.getUser(), 1));
+		}
+	}
+
+	// Get pair with most prints from map
+	pair<string, int> most = *top.begin();
+	for (auto& i : top)
+		if (i.second > most.second)
+			most = i;
+
+	cout << most.first << " - " << most.second << endl;
 }
 
 
