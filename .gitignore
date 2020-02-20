@@ -1,5 +1,5 @@
 /Debug/*
-all.csv
+res/all.csv
 cppData.vcxproj
 cppData.vcxproj.filters
 cppData.vcxproj.user
