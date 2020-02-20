@@ -6,9 +6,9 @@
 #include <sstream>
 #include <algorithm>
 
-#include "Date.hpp"
-#include "Time.hpp"
-#include "Print.hpp"
+#include "lib/Date.hpp"
+#include "lib/Time.hpp"
+#include "lib/Print.hpp"
 
 using namespace std;
 
@@ -17,11 +17,11 @@ Print getPrint(string line);
 Time getTime(string t);
 Date getDate(string d);
 
-// Analysis functions
-void mostPrints(vector<Print>* prints);
+// Analytic functions
+void mostPrints(vector<Print>& prints);
 
 int main() {
-	ifstream file("data.csv");
+	ifstream file("res/data.csv");
 
 	vector<Print> prints;
 
@@ -35,27 +35,27 @@ int main() {
 	// if(!prints.empty()) cout << prints.back() << endl;
 
 	cout << "Person with the most prints: ";
-	mostPrints(&prints);
+	mostPrints(prints);
 
 	file.close();
 	return 0;
 }
 
-void mostPrints(vector<Print>* prints) {
-	map<string, int> top;
+void mostPrints(vector<Print>& prints) {
+	map<string, int> userPrints;
 	
 	// Insert users and printCount to map
-	for (auto& i : *prints) {
-		if (top.find(i.getUser()) != top.end())
-			top.find(i.getUser())->second += 1;
+	for (auto& i : prints) {
+		if (userPrints.find(i.getUser()) != userPrints.end())
+			userPrints.find(i.getUser())->second += 1;
 		else {
-			top.insert(make_pair(i.getUser(), 1));
+			userPrints.insert(make_pair(i.getUser(), 1));
 		}
 	}
 
 	// Get pair with most prints from map
-	pair<string, int> most = *top.begin();
-	for (auto& i : top)
+	pair<string, int> most = *userPrints.begin();
+	for (auto& i : userPrints)
 		if (i.second > most.second)
 			most = i;
 
@@ -94,6 +94,9 @@ Time getTime(string t) {
 		}
 		else if (t[i] == 'm') {
 			time.minutes = stoi(val);
+		}
+		else if (t[i] == 's') {
+			time.seconds = stoi(val);
 			break;
 		}
 		else val += t[i];
