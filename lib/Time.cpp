@@ -34,6 +34,15 @@ Time::Time(std::string t) {
 	}
 }
 
- std::ostream& operator << (std::ostream& os, Time& t) {
-	return (os << t.hours << "h " << t.minutes << "m " << t.seconds << "s");
+std::ostream& operator << (std::ostream& os, Time& t) {
+	if(t.hours == -1) return (os << "Nan");
+	os << t.hours;
+
+	if(t.minutes == -1) return os;
+	os << ":" << t.minutes;
+
+	if(t.seconds == -1) return os;
+	os << ":" << t.seconds;
+	
+	return os;
 }

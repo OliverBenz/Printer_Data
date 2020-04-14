@@ -1,7 +1,7 @@
 #include "Print.hpp"
 #include <sstream>
 #include <vector>
-#include <algorithm>
+#include <iomanip>
 
 Print::Print() {
 	id = 0; roll = 0; count = 0;
@@ -29,7 +29,10 @@ Print::Print(std::string line) {
 	while (getline(ssLine, temp, '@')) values.push_back(temp);
 
 	// Replace ',' in float values with '.'
-	for (size_t i = 13; i <= 15; i++) replace(values[i].begin(), values[i].end(), ',', '.');
+	for(size_t i = 13; i <= 15; i++)
+		for(size_t l = 0; l < values[i].length(); l++)
+			if(values[i][l] == ',')
+				values[i][l] = '.';
 
 	this->id = stoi(values[0]);
 	this->roll = stoi(values[1]);
@@ -37,7 +40,7 @@ Print::Print(std::string line) {
 	this->length = stof(values[13]);
 	this->weight = stof(values[14]);
 	this->price = stof(values[15]);
-
+	
 	this->time = Time(values[12]);
 	this->timeReal = Time(values[16]);
 
@@ -78,9 +81,14 @@ std::ostream& operator <<(std::ostream& os, Print p) {
 	os << "Time: " << p.time << "  Length: " << p.length << "  Weight: " << p.weight << "  Price: " << p.price << std::endl;
 	os << "Roll: " << p.roll << "  Count: " << p.count << std::endl;
 
-	os << "Date: " << p.date << "  Duedate: " << p.dateUntil << "  Planned: " << p.datePlanned;
-	if (p.status == "Done") os << "  Done: " << p.dateDone << std::endl;
-	else os << std::endl;
+	os << "Date: " << p.date;
 
-	return os;
+	if(p.dateUntil.exists())
+		os << "  Duedate: " << p.dateUntil;
+	if(p.datePlanned.exists())
+		os << "  Planned: " << p.datePlanned;
+	if (p.status == "Done")
+		os << "  Done: " << p.dateDone;
+
+	return (os << std::endl);
 }

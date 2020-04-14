@@ -33,8 +33,15 @@ Date::Date(std::string d) {
 	}
 }
 
+bool Date::exists(){
+	return !(year == -1 || month == -1 || day == -1);
+}
+
 // Operators
 std::ostream& operator << (std::ostream& os, Date& d) {
+	if(! d.exists())
+		return (os << "Nan");
+
 	return (os << d.day << "." << d.month << "." << d.year);
 }
 

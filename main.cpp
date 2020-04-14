@@ -30,7 +30,9 @@ int main() {
 
 	cout << "Person with the most prints: ";
 	mostPrints(prints);
-	
+
+	cout << prints[17] << endl;
+
 	return 0;
 }
 
