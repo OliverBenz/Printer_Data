@@ -1,4 +1,7 @@
 #include "Print.hpp"
+#include <sstream>
+#include <vector>
+#include <algorithm>
 
 Print::Print() {
 	id = 0; roll = 0; count = 0;
@@ -18,28 +21,42 @@ Print::Print(int id, int roll, int count, float length, float weight, float pric
 	this->price = price;
 }
 
-void Print::setInfo(std::string user, std::string projectName, std::string notes, std::string status, std::string printName) {
-	this->user = user;
-	this->projectName = projectName;
-	this->notes = notes;
-	this->status = status;
-	this->printName = printName;
-};
+Print::Print(std::string line) {
+	std::stringstream ssLine(line);
 
-void Print::setDate(const Date& date, const Date& dateUntil, const Date& datePlanned, const Date& dateDone) {
-	this->date = date;
-	this->dateUntil = dateUntil;
-	this->datePlanned = datePlanned;
-	this->dateDone = dateDone;
+	std::vector<std::string> values;
+	std::string temp;
+	while (getline(ssLine, temp, '@')) values.push_back(temp);
+
+	// Replace ',' in float values with '.'
+	for (size_t i = 13; i <= 15; i++) replace(values[i].begin(), values[i].end(), ',', '.');
+
+	this->id = stoi(values[0]);
+	this->roll = stoi(values[1]);
+	this->count = stoi(values[2]);
+	this->length = stof(values[13]);
+	this->weight = stof(values[14]);
+	this->price = stof(values[15]);
+
+	this->time = Time(values[12]);
+	this->timeReal = Time(values[16]);
+
+	this->user = values[3];
+	this->projectName = values[8];
+	this->notes = values[9];
+	this->status = values[10];
+	this->printName = values[11];
+
+	this->date = Date(values[4]);
+	this->dateUntil = Date(values[5]);
+	this->datePlanned = Date(values[6]);
+	this->dateDone = Date(values[7]);
+
 }
 
-void Print::setTime(Time time, Time timeReal) {
-	this->time = time;
-	this->timeReal = timeReal;
-}
-
+// Getter
 Time Print::getTimeDiff() {
-	if (timeReal.hours != 0 && timeReal.minutes != 0) {
+	if (timeReal.hours != -1 && timeReal.minutes != -1) {
 		Time t(time.hours - timeReal.hours, time.minutes - timeReal.minutes, time.seconds - timeReal.seconds);
 		return t;
 	}
@@ -49,6 +66,10 @@ Time Print::getTimeDiff() {
 
 std::string Print::getUser() {
 	return user;
+}
+
+std::string Print::getPrintName() {
+	return printName;
 }
 
 std::ostream& operator <<(std::ostream& os, Print p) {

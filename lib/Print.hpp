@@ -16,15 +16,12 @@ class Print{
 
 public:
 	Print();
-
 	Print(int id, int roll, int count, float length, float weight, float price);
-
-	void setInfo(std::string user, std::string projectName, std::string notes, std::string status, std::string printName);
-	void setDate(const Date& date, const Date& dateUntil, const Date& datePlanned, const Date& dateDone);
-	void setTime(Time time, Time timeReal);
+	Print(std::string print);
 
 	Time getTimeDiff();
 	std::string getUser();
+	std::string getPrintName();
 
 	friend std::ostream& operator <<(std::ostream& os, Print p);
 };
