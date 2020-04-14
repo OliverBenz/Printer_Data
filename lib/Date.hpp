@@ -13,10 +13,10 @@ public:
 	Date(std::string d);
 
 	friend std::ostream& operator << (std::ostream& os, Date& d);
-	friend bool operator == (Date& d1, Date& d2);
-	friend bool operator != (Date& d1, Date& d2);
-	friend bool operator < (Date& d1, Date& d2);
-	friend bool operator > (Date& d1, Date& d2);
-	friend bool operator <= (Date& d1, Date& d2);
-	friend bool operator >= (Date& d1, Date& d2);
+	friend bool operator == (Date& left, Date& right);
+	friend bool operator != (Date& left, Date& right);
+	friend bool operator < (Date& left, Date& right);
+	friend bool operator > (Date& left, Date& right);
+	friend bool operator <= (Date& left, Date& right);
+	friend bool operator >= (Date& left, Date& right);
 };

@@ -38,26 +38,26 @@ std::ostream& operator << (std::ostream& os, Date& d) {
 	return (os << d.day << "." << d.month << "." << d.year);
 }
 
-bool operator == (Date& d1, Date& d2) {
-	return d1.year == d2.year && d1.month == d2.month && d1.day == d2.day;
+bool operator == (Date& left, Date& right) {
+	return left.year == right.year && left.month == right.month && left.day == right.day;
 }
 
-bool operator != (Date& d1, Date& d2) {
-	return !(d1 == d2);
+bool operator != (Date& left, Date& right) {
+	return !(left == right);
 }
 
-bool operator < (Date& d1, Date& d2) {
-	return (d1.year < d2.year) || (d1.year == d2.year && d1.month < d2.month) || (d1.year == d2.year && d1.month == d2.month && d1.day < d2.day);
+bool operator < (Date& left, Date& right) {
+	return (left.year < right.year) || (left.year == right.year && left.month < right.month) || (left.year == right.year && left.month == right.month && left.day < right.day);
 }
 
-bool operator > (Date& d1, Date& d2) {
-	return !(d1 == d2 || d1 < d2);
+bool operator > (Date& left, Date& right) {
+	return !(left == right || left < right);
 }
 
-bool operator <= (Date& d1, Date& d2) {
-	return d1 < d2 || d1 == d2;
+bool operator <= (Date& left, Date& right) {
+	return left < right || left == right;
 }
 
-bool operator >= (Date& d1, Date& d2) {
-	return d1 > d2 || d1 == d2;
+bool operator >= (Date& left, Date& right) {
+	return left > right || left == right;
 }
