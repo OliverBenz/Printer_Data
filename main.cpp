@@ -20,13 +20,15 @@ int main() {
 
 	vector<Print> prints;
 
-	if (file.is_open()) {
-		string line;
-		while (getline(file, line))
-			prints.push_back(Print(line));
-		file.close();
+	if (! file.is_open()){
+		cout << "Could not open file" << endl;
+		return -1;
 	}
-	else cout << "Could not open file" << endl;
+
+	string line;
+	while (getline(file, line))
+		prints.push_back(Print(line));
+	file.close();
 
 	cout << "Person with the most prints: ";
 	mostPrints(prints);

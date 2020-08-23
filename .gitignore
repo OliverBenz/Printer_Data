@@ -1,7 +1,9 @@
+main
+
 /Debug/*
 res/prints.csv
 cppData.vcxproj
 cppData.vcxproj.filters
 cppData.vcxproj.user
 
-*.o
+build/
