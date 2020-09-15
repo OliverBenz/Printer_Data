@@ -4,7 +4,7 @@ project(PrinterData)
 add_executable(main main.cpp)
 
 # Libraries
-add_subdirectory(lib)
+add_subdirectory(src)
 
 target_link_libraries(main PUBLIC datetime)
 target_link_libraries(main PUBLIC print)
