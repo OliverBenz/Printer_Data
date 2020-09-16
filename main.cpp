@@ -11,6 +11,7 @@
 #include "src/Print.hpp"
 
 using namespace std;
+using namespace Printer::Data;
 
 // Analytic functions
 void mostPrints(vector<Print>& prints);

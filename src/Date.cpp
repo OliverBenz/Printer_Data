@@ -2,6 +2,9 @@
 #include <sstream>
 #include <vector>
 
+namespace Printer {
+namespace Data {
+
 Date::Date() {
 	day = -1;
 	month = -1;
@@ -67,4 +70,7 @@ bool operator <= (Date& left, Date& right) {
 
 bool operator >= (Date& left, Date& right) {
 	return left > right || left == right;
+}
+
+}
 }

@@ -3,6 +3,9 @@
 #include <vector>
 #include <iomanip>
 
+namespace Printer {
+namespace Data {
+
 Print::Print() {
 	id = 0; roll = 0; count = 0;
 	length = 0.0f; weight = 0.0f; price = 0.0f;
@@ -91,4 +94,7 @@ std::ostream& operator <<(std::ostream& os, Print p) {
 		os << "  Done: " << p.dateDone;
 
 	return (os << std::endl);
+}
+
+}
 }

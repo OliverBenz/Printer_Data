@@ -3,6 +3,9 @@
 #include <ostream>
 #include <string>
 
+namespace Printer {
+namespace Data {
+
 class Time{
 public:
 	int hours, minutes, seconds;
@@ -13,3 +16,6 @@ public:
 
 	friend std::ostream& operator << (std::ostream& os, Time& t);
 };
+
+}
+}

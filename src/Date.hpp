@@ -3,6 +3,9 @@
 #include <ostream>
 #include <string>
 
+namespace Printer {
+namespace Data {
+
 class Date{
 public:
 	int day, month, year;
@@ -22,3 +25,6 @@ public:
 	friend bool operator <= (Date& left, Date& right);
 	friend bool operator >= (Date& left, Date& right);
 };
+
+}
+}

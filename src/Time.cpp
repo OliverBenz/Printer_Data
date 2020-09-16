@@ -1,5 +1,8 @@
 #include "Time.hpp"
 
+namespace Printer {
+namespace Data {
+
 Time::Time() {
 	hours = -1;
 	minutes = -1;
@@ -45,4 +48,7 @@ std::ostream& operator << (std::ostream& os, Time& t) {
 	os << ":" << t.seconds;
 	
 	return os;
+}
+
+}
 }

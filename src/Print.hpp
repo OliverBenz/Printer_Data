@@ -5,6 +5,9 @@
 #include "Date.hpp"
 #include "Time.hpp"
 
+namespace Printer {
+namespace Data {
+
 class Print{
 	int id, roll, count;
 	float length, weight, price;
@@ -26,3 +29,5 @@ public:
 	friend std::ostream& operator <<(std::ostream& os, Print p);
 };
 
+}
+}
