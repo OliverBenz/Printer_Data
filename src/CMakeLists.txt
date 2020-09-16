@@ -1,8 +1,8 @@
 add_library(datetime SHARED
-	Date.hpp
-	Date.cpp
 	Time.hpp
 	Time.cpp
+	Date.hpp
+	Date.cpp
 )
 
 add_library(print SHARED
