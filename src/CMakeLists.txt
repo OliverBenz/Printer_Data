@@ -1,11 +1,7 @@
-add_library(datetime SHARED
-	Time.hpp
-	Time.cpp
-	Date.hpp
-	Date.cpp
-)
+add_executable(main main.cpp)
 
-add_library(print SHARED
-	Print.hpp
-	Print.cpp
-)
+# Libraries
+add_subdirectory(lib)
+
+target_link_libraries(main PUBLIC datetime)
+target_link_libraries(main PUBLIC print)

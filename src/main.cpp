@@ -6,9 +6,9 @@
 #include <sstream>
 #include <algorithm>
 
-#include "src/Date.hpp"
-#include "src/Time.hpp"
-#include "src/Print.hpp"
+#include "lib/Date.hpp"
+#include "lib/Time.hpp"
+#include "lib/Print.hpp"
 
 using namespace std;
 using namespace Printer::Data;
