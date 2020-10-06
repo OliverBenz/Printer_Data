@@ -22,9 +22,9 @@ public:
 	Print(int id, int roll, int count, float length, float weight, float price);
 	Print(std::string print);
 
-	Time getTimeDiff();
-	std::string getUser();
-	std::string getPrintName();
+	[[nodiscard]] Time getTimeDiff();
+	[[nodiscard]] std::string getUser();
+	[[nodiscard]] std::string getPrintName();
 
 	friend std::ostream& operator <<(std::ostream& os, Print p);
 };
